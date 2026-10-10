@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html> 
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.7" />
+    <title>Long Division Engine</title>
+
+    <style>
+        html, body {
+            /*background-color: #353535;*/
+            font-family: monospace;
+            /*color: #b9b9b9;*/
+            font-size: 1.5em; /*adjust here for font scaling*/
+        }
+
+        .lineUp_s {
+            border-top: 2px solid; /*adjust here for font scaling*/
+        }
+
+        .lineUp_t {
+            border-top: 2px solid transparent; /*adjust here for font scaling*/
+        }
+
+        .lineDown_s {
+            border-bottom: 2px solid; /*adjust here for font scaling*/
+        }
+
+        .resultstl {
+            letter-spacing: 0.24ch;
+            font-size: 1em; /*adjust here for font scaling*/
+
+
+            -webkit-appearance: none;
+            border: none;
+            outline: none;
+            background: transparent;
+            box-shadow: none;
+            font-family: monospace;
+            /*color: #b9b9b9;*/
+            /*0.6 em increment per divider*/
+            margin-left: 0.2ch;
+            width: 100%;
+            /*margin-left: 0.9em;*/
+
+            padding-left: 0.5ch;
+        }
+
+
+        #mcnt {
+            display: flex;
+            width: auto;
+            padding: 1vw 0 2vw 3vw;
+            border-left: 1px solid black;
+        }
+
+        #smcnt {
+            display: flex;
+            flex-direction: column;
+            width: auto;
+        }
+
+
+        .ctrl {
+            user-select: none;
+            margin: 0 4vw 0 3vw;
+            grid-area: 1 / 1;
+        }
+
+            .ctrl:hover {
+                filter: invert(0.8)
+            }
+
+
+        .gridHide {
+            filter: blur(4px) opacity(0.5);
+            transition: all 0.7s ease;
+            display: grid;
+            /*pointer-events: none;*/
+        }
+
+        .gridPop {
+            transition: all 0.7s ease;
+            display: flex;
+            flex-direction:  column;
+            row-gap: 1ch;
+            filter: none;
+            /*pointer-events: auto;*/
+        }
+
+  /*      #ctrlCry {
+            transition: all 0.5s ease;
+            display: grid;
+            filter: blur(4px);
+        }*/
+
+/*        #ctrCry > * {
+            grid-area: 1 / 1;
+        }*/
+
+/*            #ctrlCry:hover {
+                transition: all 0.5s ease;
+                display: flex;
+                flex-direction: column;
+                row-gap: 1ch;
+                filter: none;
+            }*/
+
+
+        #snmb, #divisor {
+            letter-spacing: 0.25ch;
+        }
+
+        #dividend {
+            margin-left: 0.25ch;
+            padding-left: 0.5ch;
+        }
+
+
+        .lineLeft_s {
+            height: 100%;
+            width: 1.25ch;
+            border-left: 1px dashed #343434;
+        }
+
+        #rmsk {
+            padding-top: 0.5ch;
+            padding-left: 0.5ch;
+            pointer-events: none;
+            position: absolute;
+            user-select: none;
+        }
+
+        .slant {
+            transform:  translateX(4.4px) skew(357deg, 325deg) scaleX(1.6);
+            /*transform: translateX(4.4px) skew(3deg, 323deg) scaleX(1.6);*/
+        }
+
+        #carrier {
+            display: flex;
+            margin: 2ch 0 2ch 0;
+        }
+
+        .inflex {
+            display: inline-flex;
+            grid-column-gap: 1ch;
+            margin-right: 2ch;
+        }
+
+        #sgn {
+            margin-right: 2ch;
+        }
+    </style>
+
+    <!--<script type="text/javascript" src="src/log.js"> </script>
+    <script type="text/javascript" src="src/common.js"></script>
+    <script type="text/javascript" src="src/longdiv.js"></script>-->
+
+    <script type="text/javascript" src="common.min.js"></script>
+    <script type="text/javascript" src="longdiv.min.js"></script>
+
+</head>
+
+<body onload="init()">
+    <div id="carrier">
+        <div id="ctrlCry" tabindex="0">
+            <div class="ctrl" style="cursor:move; padding-left:0.5ch" id="slcnt">&#183;</div>
+            <div class="ctrl" style="padding-left:0.5ch" id="ruler">&#124;</div>
+            <div class="ctrl" id="rand" style="padding-left:0.5ch">#</div>
+            <div class="ctrl" id="dec" style="font-size:0.8em">.0</div>
+            <div class="ctrl" id="disp2" style="padding-left:0.25ch">&#9114;</div>
+            <div class="ctrl" id="prnt" style="padding-left:0.25ch">&#9113;</div>
+        </div>
+        <div id="mcnt">
+            <div id="smcnt">
+                <div style="display:flex">
+                    <div id="divisor" class="lineUp_t">-</div>
+                    <div class="slant">/</div>
+                </div>
+            </div>
+            <div style="display: flex;">
+                <div id="snmb">
+                    <input class="resultstl" id="result" type="text" placeholder=">" />
+                    <div id="dividend" class="lineUp_s">---</div>
+                </div>
+                <div id="sgn"></div>
+            </div>
+        </div>
+    </div>
+    <div id="rmsk" hidden="hidden"></div>
+</body>
+</html>
