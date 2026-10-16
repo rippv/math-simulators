@@ -4,11 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.7" />
+    <meta name="color-scheme" content="light dark">
 
-    <!--<script type="text/javascript" src="src/index.js"></script>-->
+    <!--<script type="text/javascript" src="src/common.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>-->
+
     <script type="text/javascript" src="index.min.js"></script>
 
     <style>
+
+        :root {
+            color-scheme: light dark;
+        }
+
         h1, html, body, p {
             font-family: monospace;
         }
@@ -39,6 +47,10 @@
             flex-wrap: wrap;
             grid-column-gap: 5ch;
             grid-row-gap: 1ch;
+        }
+
+        .subtitle {
+            width: 100%;
         }
     </style>
 
